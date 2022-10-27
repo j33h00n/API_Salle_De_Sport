@@ -15,7 +15,7 @@ Installation
 Téléchargez le git
 
 ```bash
-En cours de rédaction
+$ symfony
 
 ```
 > **NOTE**
@@ -31,8 +31,8 @@ En cours de rédaction
 
 Utilisation
 -----------
-
-.
-.
-
+```bash
+$ cd API_Salle_De_Sport/
+$ symfony serve
+```
 
