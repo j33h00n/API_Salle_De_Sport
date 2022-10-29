@@ -20,8 +20,16 @@
 		<div class="count">
 			Nombre de modules disponible :{{ modules.getTotalItemCount}}
 		</div>
+		<div class="row mt-3">
+			<div class="col-md-4">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" id="marecherche" onkeyup="recherche()" placeholder="Recherche" aria-label="recherche" aria-describedby="button-addon2">
+					<button class="btn btn-primary" type="button" id="button-addon2">Recherche</button>
+				</div>
+			</div>
+		</div>
 
-		<table class="table table-hover">
+		<table class="table table-hover" id="matable">
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
@@ -52,5 +60,5 @@
 		</div>
 
 	</div>
-
+<script src="./assets/js/scripts.js"></script>
 {% endblock %}
