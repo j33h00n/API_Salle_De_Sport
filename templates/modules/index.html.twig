@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des modules
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mt-4">
+
+		<h1>Liste des modules</h1>
+
+		<a href="{{ path('modules.new') }}" class="btn btn-primary mb-4">Ajouter un module</a>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-dismissible alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<div class="count">
+			Nombre de modules disponible :{{ modules.getTotalItemCount}}
+		</div>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Date de création</th>
+					<thscope="col">Editer</th>
+					<thscope="col">Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for modules in modules  %}
+					<tr class="table-active">
+						<th scope="row">{{ modules.id }}</th>
+						<td>{{ modules.name }}</td>
+						<td>{{ modules.createdAt|date('d/m/Y') }}</td>
+						<td>
+							<a href="{{ path('modules.edit', {'id': modules.id}) }}" class="btn btn-primary">Editer</a>
+						</td>
+						<td>
+							<a href="{{ path('modules.delete', {'id': modules.id}) }}" class="btn btn-danger">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="navigation d-flex justify-content-center mt-4">
+			{{ knp_pagination_render(modules) }}
+		</div>
+
+	</div>
+
+{% endblock %}
