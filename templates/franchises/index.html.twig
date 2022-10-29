@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Franchises
+{% endblock %}
+
+{% block body %}
+
+	<div class="container mt-4">
+
+		<h1>Liste des Franchises</h1>
+
+		<a href="{{ path('franchises.new') }}" class="btn btn-primary mb-4">Ajouter un franchise</a>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-dismissible alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<div class="count">
+			Nombre de franchises disponible :{{ franchises.getTotalItemCount}}
+		</div>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Email gestionnaire</th>
+                    <th scope="col">Ville</th>
+                    <th scope="col">Nbr structures</th>
+					<th scope="col">Date de création</th>
+					<thscope="col">Editer</th>
+					<thscope="col">Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for franchises in franchises  %}
+					<tr class="table-active">
+						<th scope="row">{{ franchises.id }}</th>
+                        <td>{{ franchises.user_id }}</td>
+						<td>{{ franchises.ville }}</td>
+                        <td>{{ franchises.structures_id }}</td>
+						<td>{{ franchises.createdAt|date('d/m/Y') }}</td>
+						<td>
+							<a href="{{ path('franchises.edit', {'id': franchises.id}) }}" class="btn btn-primary">Editer</a>
+						</td>
+						<td>
+							<a href="{{ path('franchises.delete', {'id': franchises.id}) }}" class="btn btn-danger">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="navigation d-flex justify-content-center mt-4">
+			{{ knp_pagination_render(franchises) }}
+		</div>
+
+	</div>
+
+{% endblock %}
