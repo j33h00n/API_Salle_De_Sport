@@ -1,20 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello StructuresController!{% endblock %}
+{% block title %}Liste des Structures
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<div class="container mt-4">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/STUDI/API_Salle_De_Sport/src/Controller/StructuresController.php'|file_link(0) }}">src/Controller/StructuresController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/STUDI/API_Salle_De_Sport/templates/structures/index.html.twig'|file_link(0) }}">templates/structures/index.html.twig</a></code></li>
-    </ul>
-</div>
+		<h1>Liste des Structures</h1>
+
+		<a href="{{ path('structures.new') }}" class="btn btn-primary mb-4">Ajouter une structure</a>
+
+		{% for message in app.flashes('success') %}
+			<div class="alert alert-dismissible alert-success mt-4">
+				{{ message }}
+			</div>
+		{% endfor %}
+
+		<div class="count">
+			Nombre de franchises disponible :{{ structures.getTotalItemCount}}
+		</div>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Email gestionnaire</th>
+                    <th scope="col">Adresse</th>
+                    <th scope="col">Status</th>
+					<th scope="col">Date de création</th>
+					<thscope="col">Editer</th>
+					<thscope="col">Supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for structures in structures  %}
+					<tr class="table-active">
+						<th scope="row">{{ structures.id }}</th>
+                        <td>{{ structures.user_id }}</td>
+						<td>{{ structures.adresse }}</td>
+                        <td>{{ structures.is_active }}</td>
+						<td>{{ structures.createdAt|date('d/m/Y') }}</td>
+						<td>
+							<a href="{{ path('structures.edit', {'id': structures.id}) }}" class="btn btn-primary">Editer</a>
+						</td>
+						<td>
+							<a href="{{ path('structures.delete', {'id': structures.id}) }}" class="btn btn-danger">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="navigation d-flex justify-content-center mt-4">
+			{{ knp_pagination_render(structures) }}
+		</div>
+
+	</div>
+
 {% endblock %}

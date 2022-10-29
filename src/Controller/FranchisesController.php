@@ -74,7 +74,7 @@ class FranchisesController extends AbstractController
     
                 $manager->persist($franchises);
                 $manager->flush();
-                $this->addFlash('success', 'Le module a bien été modifié');
+                $this->addFlash('success', 'La franchise a bien été modifié');
     
                 return $this->redirectToRoute('franchises.index');
             }
@@ -89,14 +89,14 @@ class FranchisesController extends AbstractController
         public function delete(Franchises $franchises, EntityManagerInterface $manager): Response
         {
             if (!$franchises) {
-                $this->addFlash('success', 'Le module n\'existe pas');
-                return $this->redirectToRoute('modules.index');
+                $this->addFlash('success', 'Cette franchise n\'existe pas');
+                return $this->redirectToRoute('franchises.index');
             }
             $manager->remove($franchises);
             $manager->flush();
-            $this->addFlash('success', 'Le module a bien été supprimé');
+            $this->addFlash('success', 'La franchise a bien été supprimé');
     
-            return $this->redirectToRoute('modules.index');
+            return $this->redirectToRoute('franchises.index');
         }
 
 
