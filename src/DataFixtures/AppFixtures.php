@@ -6,6 +6,7 @@ use Faker\Factory;
 use Faker\Generator;
 use App\Entity\Users;
 use App\Entity\Franchises;
+use App\Entity\Modules;
 use App\Entity\Structures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -43,6 +44,32 @@ class AppFixtures extends Fixture
             ->setCreatedAt(new \DateTimeImmutable());
 
         $manager->persist($user);
+
+        //Creation des modules
+        $modules = new Modules();
+        $modules->setName('Gerer planning equipe')
+            ->setCreatedAt(new \DateTimeImmutable());
+
+        $manager->persist($modules);
+
+        $modules = new Modules();
+        $modules->setName('Envoyer newsletter')
+            ->setCreatedAt(new \DateTimeImmutable());
+
+        $manager->persist($modules);
+
+        $modules = new Modules();
+        $modules->setName('Vendre des boissons')
+            ->setCreatedAt(new \DateTimeImmutable());
+
+        $manager->persist($modules);
+
+        $modules = new Modules();
+        $modules->setName('Cours Fitness personnalisé')  
+            ->setCreatedAt(new \DateTimeImmutable());
+
+        $manager->persist($modules);
+
 
         //Creation de Franchises et Structures
         // for ($j = 0; $j < 4; $j++) {

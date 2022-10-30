@@ -28,11 +28,11 @@ class PermissionsModules
 
     #[ORM\ManyToOne(inversedBy: 'structure_id')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Structures $structures = null;
+    private ?Structures $structures;
 
     #[ORM\ManyToOne(inversedBy: 'franchise_id')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Franchises $franchises = null;
+    private ?Franchises $franchises;
 
     public function getId(): ?int
     {

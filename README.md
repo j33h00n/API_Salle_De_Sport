@@ -18,6 +18,15 @@ Téléchargez le git
 $ symfony
 
 ```
+
+Executez la fixture pour charger des données fictives pour effectuer les différentes manipulation du site.
+
+> **NOTE**
+>Attention:
+>
+>Il sera necessaire d'avoir un intercepteur de mail de type MAILHOG ou MAILDEV
+>Le mailer interne n'a pas été configuré pour cette simulation.
+
 > **NOTE**
 >
 > 
@@ -31,6 +40,15 @@ $ symfony
 
 Utilisation
 -----------
+
+Une fois que vous avez lancé votre serveur Web local.
+
+Lancez un navigateur a cette adresse:
+
+http://localhost ou http://127.0.0.1
+
+Cela dépendra de la configuration de votre poste.
+
 ```bash
 $ cd API_Salle_De_Sport/
 $ symfony serve
