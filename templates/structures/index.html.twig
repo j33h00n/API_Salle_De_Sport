@@ -37,9 +37,9 @@
 				{% for structures in structures  %}
 					<tr class="table-active">
 						<th scope="row">{{ structures.id }}</th>
-                        <td>{{ structures.user_id }}</td>
+                        {# <td>{{ structures.user_id }}</td> #}
 						<td>{{ structures.adresse }}</td>
-                        <td>{{ structures.is_active }}</td>
+                        {# <td>{{ structures.is_active }}</td> #}
 						<td>{{ structures.createdAt|date('d/m/Y') }}</td>
 						<td>
 							<a href="{{ path('structures.edit', {'id': structures.id}) }}" class="btn btn-primary">Editer</a>

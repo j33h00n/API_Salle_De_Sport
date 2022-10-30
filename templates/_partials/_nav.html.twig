@@ -7,20 +7,23 @@
 		<div class="collapse navbar-collapse" id="navbarColor01">
 			<ul class="navbar-nav me-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="{{'main'}}">Tableau de bord
+					<a class="nav-link" href="{{'main'}}">Accueil
 						<span class="visually-hidden">(current)</span>
 					</a>
 				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu Admin</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="{{'franchises'}}">Franchises</a>
-						<a class="dropdown-item" href="{{'structures'}}">Structures</a>
-						<a class="dropdown-item" href="{{'modules'}}">Modules</a>
-						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="{{'register'}}">Utilisateurs</a>
-					</div>
-				</li>
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menu Admin</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="{{'franchises'}}">Franchises</a>
+							<a class="dropdown-item" href="{{'structures'}}">Structures</a>
+							<a class="dropdown-item" href="{{'modules'}}">Modules</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="{{'register'}}">Utilisateurs</a>
+						</div>
+					</li>
+				{% endif %}
+
 			</ul>
 			<ul class="navbar-nav ms-auto">
 				{% if app.user %}
@@ -31,7 +34,7 @@
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path ('app_login') }}">Connexion</a>
 					</li>
-				{% endif %}  
+				{% endif %}
 			</ul>
 		</div>
 	</div>

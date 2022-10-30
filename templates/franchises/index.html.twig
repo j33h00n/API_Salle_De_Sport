@@ -37,9 +37,9 @@
 				{% for franchises in franchises  %}
 					<tr class="table-active">
 						<th scope="row">{{ franchises.id }}</th>
-                        <td>{{ franchises.user_id }}</td>
+                        {# <td>{{ franchises.user_id }}</td> #}
 						<td>{{ franchises.ville }}</td>
-                        <td>{{ franchises.structures_id }}</td>
+                        {# <td>{{ franchises.structures_id }}</td> #}
 						<td>{{ franchises.createdAt|date('d/m/Y') }}</td>
 						<td>
 							<a href="{{ path('franchises.edit', {'id': franchises.id}) }}" class="btn btn-primary">Editer</a>
