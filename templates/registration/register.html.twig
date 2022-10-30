@@ -8,6 +8,13 @@
 		<div class="row">
 			<div class="col">
 				<h1>Création</h1>
+
+				{% for message in app.flashes('success') %}
+					<div class="alert alert-dismissible alert-success mt-4">
+						{{ message }}
+					</div>
+				{% endfor %}
+
 				{{ form_start(registrationForm) }}
 				{{ form_row(registrationForm.email) }}
 				{{ form_row(registrationForm.plainPassword, {

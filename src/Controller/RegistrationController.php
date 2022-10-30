@@ -40,13 +40,19 @@ class RegistrationController extends AbstractController
 
             $entityManager->persist($user);
             $entityManager->flush();
+
+            $this->addFlash('success', 'L\'utilisateur a bien été créé');
             // do anything else you need here, like send an email
 
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            // Autologin Utilisateur apres creation de compte
+            // return $userAuthenticator->authenticateUser(
+            //     $user,
+            //     $authenticator,
+            //     $request
+            // );
+            
+            // Redirection vers la page de connexion apres creation de compte
+            // return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [

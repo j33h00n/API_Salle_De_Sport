@@ -29,11 +29,20 @@ class AppFixtures extends Fixture
             $user = new Users();
             $user->setEmail($this->faker->email)
                 ->setRoles(['ROLE_USER'])
-                ->setPassword(password_hash('admin', PASSWORD_BCRYPT))
+                ->setPassword(password_hash('Bonjour1', PASSWORD_BCRYPT))
                 ->setCreatedAt(new \DateTimeImmutable());
 
             $manager->persist($user);
         }
+
+        //Creation ADMINISTRATEUR
+        $user = new Users();
+        $user->setEmail('admin@admin.com')
+            ->setRoles(['ROLE_ADMIN'])
+            ->setPassword(password_hash('admin', PASSWORD_BCRYPT))
+            ->setCreatedAt(new \DateTimeImmutable());
+
+        $manager->persist($user);
 
         //Creation de Franchises et Structures
         // for ($j = 0; $j < 4; $j++) {
