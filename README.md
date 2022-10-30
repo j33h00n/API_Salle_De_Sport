@@ -10,12 +10,39 @@ Prérequis
   * Symfony 6.x ou superieur;
   * et [toutes les dépendances de base pour le bon fonctionnement de Symfony](http://symfony.com/doc/current/reference/requirements.html).
 
+> **NOTE**
+>
+>Developpé et testé avec XAMPP v3.3.0
+>BDD : MariaDB 10.4.25
+>Apache : Apache 2.4.54
+>PHP : PHP 8.1.10
+>
+
 Installation
 ------------
 - Téléchargez le git
 lien : https://github.com/j33h00n/API_Salle_De_Sport.git
 
 - Executez la fixture pour charger des données fictives pour effectuer les différentes manipulation du site.
+
+Editez le fichier .env et ajustez les infos pour connecter votre base de donnée :
+
+```bash
+DATABASE_URL="mysql://root:@127.0.0.1:3306/sport?serverVersion=mariadb-10.4.25&charset=utf8mb4"
+
+```
+
+Preparez une base de donnée sous le nom : sport
+
+
+```bash
+$ php bin/console make migration:migrate
+
+```
+> **NOTE**
+>
+>La nom de la base de donnée est nommée : sport
+>
 
 ```bash
 $ php bin/console doctrine:fixtures:load
