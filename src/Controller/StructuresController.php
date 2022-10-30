@@ -14,6 +14,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StructuresController extends AbstractController
 {
+    /**
+     * @Route("/structures", name="structures")
+     */
     #[Route('/structures', name: 'structures.index')]
     public function index(StructuresRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
@@ -27,7 +30,9 @@ class StructuresController extends AbstractController
             'structures' => $structures
         ]);
     }
-
+    /**
+     * @Route("/structures/create", name="structures_create")
+     */
     #[Route('/structures/creation', 'structures.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
@@ -51,7 +56,9 @@ class StructuresController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+    /**
+     * @Route("/structures/{id}", name="structures_show")
+     */
     #[Route('/structures/edition/{id}', 'structures.edit', methods: ['GET', 'POST'])]
     public function edit(Structures $structures, Request $request, EntityManagerInterface $manager): Response
     {
@@ -72,7 +79,9 @@ class StructuresController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+    /**
+     * @Route("/structures/{id}", name="structures_delete", methods={"DELETE"})
+     */
     #[Route('/structures/suppression/{id}', 'structures.delete', methods: ['GET', 'POST'])]
     public function delete(Structures $structures, EntityManagerInterface $manager): Response
     {

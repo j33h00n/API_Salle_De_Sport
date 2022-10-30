@@ -45,6 +45,7 @@ class ModulesController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
+    
     #[Route('/modules/creation', 'modules.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
@@ -68,6 +69,13 @@ class ModulesController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * Cette fonction permet d'afficher le détail d'un module
+     * 
+     * @param Modules $modules
+     * @return Response
+     * 
+     */
 
     #[Route('/modules/edition/{id}', 'modules.edit', methods: ['GET', 'POST'])]
     public function edit(Modules $modules, Request $request, EntityManagerInterface $manager): Response
@@ -96,6 +104,7 @@ class ModulesController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
+
     #[Route('/modules/suppression/{id}', 'modules.delete', methods: ['GET', 'POST'])]
     public function delete(Modules $modules, EntityManagerInterface $manager): Response
     {
