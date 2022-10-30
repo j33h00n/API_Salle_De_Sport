@@ -45,6 +45,24 @@ class AppFixtures extends Fixture
 
         $manager->persist($user);
 
+        //Creation utilisateur Franchises
+        $user = new Users();
+        $user->setEmail('franchises@orangebleue.com')
+            ->setRoles(['ROLE_FRANC'])
+            ->setPassword(password_hash('bonjour1', PASSWORD_BCRYPT))
+            ->setCreatedAt(new \DateTimeImmutable());
+
+        $manager->persist($user);
+
+        //Creation utilisateur Structures
+        $user = new Users();
+        $user->setEmail('structures@orangebleue.com')
+            ->setRoles(['ROLE_STRUC'])
+            ->setPassword(password_hash('bonjour1', PASSWORD_BCRYPT))
+            ->setCreatedAt(new \DateTimeImmutable());
+
+        $manager->persist($user);
+
         //Creation des modules
         $modules = new Modules();
         $modules->setName('Gerer planning equipe')
@@ -65,7 +83,7 @@ class AppFixtures extends Fixture
         $manager->persist($modules);
 
         $modules = new Modules();
-        $modules->setName('Cours Fitness personnalisé')  
+        $modules->setName('Cours Fitness personnalisé')
             ->setCreatedAt(new \DateTimeImmutable());
 
         $manager->persist($modules);
