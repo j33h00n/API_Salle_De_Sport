@@ -67,7 +67,7 @@ Une fois que vous avez lancé votre serveur Web local.
 
 Lancez un navigateur a cette adresse:
 
-http://localhost ou http://127.0.0.1
+http://localhost ou http://127.0.0.0
 
 Cela dépendra de la configuration de votre poste.
 
