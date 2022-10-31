@@ -121,4 +121,17 @@ class FranchisesController extends AbstractController
 
         return $this->redirectToRoute('franchises.index');
     }
+
+    #[Route('/franchises/fiche', name: 'fiche.index', methods: ['GET'])]
+    public function fiche(FranchisesRepository $repository, UsersRepository $usersRepository, PaginatorInterface $paginator, Request $request): Response
+    {
+        $franchises = $paginator->paginate(
+            $repository->findAll(),
+
+        );
+
+        return $this->render('franchises/fiche.html.twig', [
+            'franchises' => $franchises
+        ]);
+    }
 }
