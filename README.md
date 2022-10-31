@@ -23,14 +23,6 @@ Installation
 - Téléchargez le git
 lien : https://github.com/j33h00n/API_Salle_De_Sport.git
 
-- Executez la fixture pour charger des données fictives pour effectuer les différentes manipulation du site.
-
-> **NOTE**
->
->Il peut arriver qu'une erreur de chargement de fixtures car un generateur aléatoire de selection peut
->parfois tomber sur la meme entrée, il suffit de relancer le LOAD de la fixture et normalement cela
->devrait finir le processus de création.
->
 
 Editez le fichier .env et ajustez les infos pour connecter votre base de donnée :
 
@@ -51,13 +43,18 @@ $ php bin/console make migration:migrate
 >La nom de la base de donnée est nommée : sport
 >
 
+- Executez la fixture pour charger des données fictives pour effectuer les différentes manipulation du site.
+
 ```bash
 $ php bin/console doctrine:fixtures:load
 
 ```
 
 > **NOTE**
->Attention:
+>
+>Il peut arriver qu'une erreur de chargement de fixtures car un generateur aléatoire de selection peut
+>parfois tomber sur la meme entrée, il suffit de relancer le LOAD de la fixture et normalement cela
+>devrait finir le processus de création.
 >
 >Il sera necessaire d'avoir un intercepteur de mail de type MAILHOG ou MAILDEV
 >Le mailer interne n'a pas été configuré pour cette simulation.
