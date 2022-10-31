@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard Franchises
+{% block title %}Gestion Franchises
 {% endblock %}
 
 {% block body %}
 
 	<div class="container mt-4">
 
-		<h1>Liste des Franchises</h1>
+		<h1>Gestion des Franchises</h1>
 
-		<a href="{{ path('franchises.new') }}" class="btn btn-primary mb-4">Ajouter un franchise</a>
+		<a href="{{ path('franchises.new') }}" class="btn btn-primary mb-4">Ajouter une franchise</a>
 
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-dismissible alert-success mt-4">

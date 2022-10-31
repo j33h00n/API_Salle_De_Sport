@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Franchises;
 use App\Form\FranchisesType;
 use App\Repository\FranchisesRepository;
+use App\Repository\StructuresRepository;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -20,6 +21,7 @@ class FranchisesController extends AbstractController
      * Cette fonction permet d'afficher la liste des franchises
      * 
      * @param FranchisesRepository $repository
+     * @param StructuresRepository $structures
      * @param PaginatorInterface $paginator
      * @param Request $request
      * @return Response

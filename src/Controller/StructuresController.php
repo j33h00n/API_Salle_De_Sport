@@ -63,7 +63,7 @@ class StructuresController extends AbstractController
     public function edit(Structures $structures, Request $request, EntityManagerInterface $manager): Response
     {
 
-        $form = $this->createForm(FStructuresType::class, $structures);
+        $form = $this->createForm(StructuresType::class, $structures);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $structures = $form->getData();
