@@ -45,9 +45,11 @@
 						<th scope="row">{{ modules.id }}</th>
 						<td>{{ modules.name }}</td>
 						<td>{{ modules.createdAt|date('d/m/Y') }}</td>
+						{% if is_granted('ROLE_ADMIN') %}
 						<td>
 							<a href="{{ path('modules.edit', {'id': modules.id}) }}" class="btn btn-primary">Editer</a>
 						</td>
+						{% endif %}
 						<td>
 							<a href="{{ path('modules.delete', {'id': modules.id}) }}" class="btn btn-danger">Supprimer</a>
 						</td>
