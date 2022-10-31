@@ -8,9 +8,9 @@
 	<div class="container mt-4">
 
 		<h1>Liste des Structures</h1>
-
+		{% if is_granted('ROLE_ADMIN', 'ROLE_FRANC') %}
 		<a href="{{ path('structures.new') }}" class="btn btn-primary mb-4">Ajouter une structure</a>
-
+		{% endif %}
 		{% for message in app.flashes('success') %}
 			<div class="alert alert-dismissible alert-success mt-4">
 				{{ message }}
@@ -49,12 +49,14 @@
 						<td>{{ structures.adresse }}</td>
 						{# <td>{{ structures.is_active }}</td> #}
 						<td>{{ structures.createdAt|date('d/m/Y') }}</td>
+						{% if is_granted('ROLE_ADMIN', 'ROLE_FRANC') %}
 						<td>
 							<a href="{{ path('structures.edit', {'id': structures.id}) }}" class="btn btn-primary">Editer</a>
 						</td>
 						<td>
 							<a href="{{ path('structures.delete', {'id': structures.id}) }}" class="btn btn-danger">Supprimer</a>
 						</td>
+						{% endif %}
 					</tr>
 				{% endfor %}
 			</tbody>
