@@ -25,14 +25,16 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         //Creation d'utilisateurs
-        for ($i = 0; $i < 20; $i++) {
+        $users = [];
+        for ($i = 0; $i < 120; $i++) {
 
             $user = new Users();
             $user->setEmail($this->faker->email)
                 ->setRoles(['ROLE_USER'])
                 ->setPassword(password_hash('Bonjour1', PASSWORD_BCRYPT))
-                ->setCreatedAt(new \DateTimeImmutable());
-
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->setIsVerified(true);
+            $users[] = $user;
             $manager->persist($user);
         }
 
@@ -41,7 +43,8 @@ class AppFixtures extends Fixture
         $user->setEmail('admin@admin.com')
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword(password_hash('admin', PASSWORD_BCRYPT))
-            ->setCreatedAt(new \DateTimeImmutable());
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setIsVerified(true);
 
         $manager->persist($user);
 
@@ -50,7 +53,8 @@ class AppFixtures extends Fixture
         $user->setEmail('franchises@orangebleue.com')
             ->setRoles(['ROLE_FRANC'])
             ->setPassword(password_hash('bonjour1', PASSWORD_BCRYPT))
-            ->setCreatedAt(new \DateTimeImmutable());
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setIsVerified(true);
 
         $manager->persist($user);
 
@@ -59,7 +63,8 @@ class AppFixtures extends Fixture
         $user->setEmail('structures@orangebleue.com')
             ->setRoles(['ROLE_STRUC'])
             ->setPassword(password_hash('bonjour1', PASSWORD_BCRYPT))
-            ->setCreatedAt(new \DateTimeImmutable());
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setIsVerified(true);
 
         $manager->persist($user);
 
@@ -89,28 +94,31 @@ class AppFixtures extends Fixture
         $manager->persist($modules);
 
 
-        //Creation de Franchises et Structures
-        // for ($j = 0; $j < 4; $j++) {
+        //Creation de Franchises
+        $franchisesf = [];
+        for ($j = 0; $j < 4; $j++) {
 
-        //     $franchises = new Franchises();
-        //     $franchises->setVille($this->faker->city)
-        //         ->setUser($this->getReference('user_' . rand(1, 19)))
-        //         ->setCreatedAt(new \DateTimeImmutable());
+            $franchises = new Franchises();
+            $franchises->setVille($this->faker->city)
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->setUser($users[mt_rand(0, 120)]);
 
-        //     $manager->persist($franchises);
+            $franchisesf[] = $franchises;       
+            $manager->persist($franchises);
+        }
 
-        //     //Creation de Structures pour chaque Franchise
-        //     for ($k = 0; $k <= mt_rand(1, 3); $k++) {
-        //         $structure = new Structures();
+        //Creation des Structures pour chaque Franchise
+        for ($k = 0; $k < 10; $k++) {
 
-        //         $structure->setAdresse($this->faker->streetAddress)
-        //             ->setUser($this->getReference('user_' . rand(1, 19)))
-        //             ->set
-        //             ->setCreatedAt(new \DateTimeImmutable());
+            $structure = new Structures();
+            $structure->setAdresse($this->faker->streetAddress)
+                ->setUser($users[mt_rand(0, 120)])
+                ->setIsActive(true)
+                ->setCreatedAt(new \DateTimeImmutable());
 
-        //         $manager->persist($structure);
-        //     }
-        // }
+            $manager->persist($structure);
+        }
+        
 
 
 

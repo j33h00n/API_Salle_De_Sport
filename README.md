@@ -25,6 +25,13 @@ lien : https://github.com/j33h00n/API_Salle_De_Sport.git
 
 - Executez la fixture pour charger des données fictives pour effectuer les différentes manipulation du site.
 
+> **NOTE**
+>
+>Il peut arriver qu'une erreur de chargement de fixtures car un generateur aléatoire de selection peut
+>parfois tomber sur la meme entrée, il suffit de relancer le LOAD de la fixture et normalement cela
+>devrait finir le processus de création.
+>
+
 Editez le fichier .env et ajustez les infos pour connecter votre base de donnée :
 
 ```bash
@@ -80,6 +87,6 @@ franchises@orangebleue.com / bonjour1
 
 - Compte Structures:
 
-structures@orangebleue.com
+structures@orangebleue.com / bonjour1
 
 En vous souhaitant bonne navigation...

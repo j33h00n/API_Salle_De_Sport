@@ -20,14 +20,22 @@
 		<div class="count">
 			Nombre de franchises disponible :{{ franchises.getTotalItemCount}}
 		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="form-group">
+					<label class="col-form-label" for="inputDefault"></label>
+					<input type="text" class="form-control" id="marecherche" onkeyup="recherche()" placeholder="Recherche">
+				</div>
+			</div>
+		</div>
 
-		<table class="table table-hover">
+		<table class="table table-hover " id="matable">
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Email gestionnaire</th>
-                    <th scope="col">Ville</th>
-                    <th scope="col">Nbr structures</th>
+					<th scope="col">Ville</th>
+					<th scope="col">Nbr structures</th>
 					<th scope="col">Date de création</th>
 					<th scope="col">Editer</th>
 					<th scope="col">Supprimer</th>
@@ -37,9 +45,9 @@
 				{% for franchises in franchises  %}
 					<tr class="table-active">
 						<th scope="row">{{ franchises.id }}</th>
-                        {# <td>{{ franchises.user_id }}</td> #}
+						{# <td>{{ franchises.user_id }}</td> #}
 						<td>{{ franchises.ville }}</td>
-                        {# <td>{{ franchises.structures_id }}</td> #}
+						{# <td>{{ franchises.structures_id }}</td> #}
 						<td>{{ franchises.createdAt|date('d/m/Y') }}</td>
 						<td>
 							<a href="{{ path('franchises.edit', {'id': franchises.id}) }}" class="btn btn-primary">Editer</a>

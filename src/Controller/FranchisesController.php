@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Franchises;
 use App\Form\FranchisesType;
 use App\Repository\FranchisesRepository;
+use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -24,7 +25,7 @@ class FranchisesController extends AbstractController
      * @return Response
      */
     #[Route('/franchises', name: 'franchises.index', methods: ['GET'])]
-    public function index(FranchisesRepository $repository, PaginatorInterface $paginator, Request $request): Response
+    public function index(FranchisesRepository $repository, UsersRepository $usersRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $franchises = $paginator->paginate(
             $repository->findAll(),
@@ -38,8 +39,13 @@ class FranchisesController extends AbstractController
         ]);
     }
 
-
-
+    /**
+     * Cette fonction permet d'afficher le formulaire d'ajout d'une franchise
+     * 
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
     #[Route('/franchises/creation', 'franchises.new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
@@ -63,42 +69,54 @@ class FranchisesController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-        #[Route('/franchises/edition/{id}', 'franchises.edit', methods: ['GET', 'POST'])]
-        public function edit(Franchises $franchises, Request $request, EntityManagerInterface $manager): Response
-        {
-    
-            $form = $this->createForm(FranchisesType::class, $franchises);
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $franchises = $form->getData();
-    
-                $manager->persist($franchises);
-                $manager->flush();
-                $this->addFlash('success', 'La franchise a bien été modifié');
-    
-                return $this->redirectToRoute('franchises.index');
-            }
-    
-            return $this->render('franchises/edit.html.twig', [
-                'form' => $form->createView(),
-            ]);
-        }
-    
-  
-        #[Route('/franchises/suppression/{id}', 'franchises.delete', methods: ['GET', 'POST'])]
-        public function delete(Franchises $franchises, EntityManagerInterface $manager): Response
-        {
-            if (!$franchises) {
-                $this->addFlash('success', 'Cette franchise n\'existe pas');
-                return $this->redirectToRoute('franchises.index');
-            }
-            $manager->remove($franchises);
+
+    /**
+     * Cette fonction permet d'afficher le formulaire d'édition d'une franchise
+     * 
+     * @param Franchises $franchises
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[Route('/franchises/edition/{id}', 'franchises.edit', methods: ['GET', 'POST'])]
+    public function edit(Franchises $franchises, Request $request, EntityManagerInterface $manager): Response
+    {
+
+        $form = $this->createForm(FranchisesType::class, $franchises);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $franchises = $form->getData();
+
+            $manager->persist($franchises);
             $manager->flush();
-            $this->addFlash('success', 'La franchise a bien été supprimé');
-    
+            $this->addFlash('success', 'La franchise a bien été modifié');
+
             return $this->redirectToRoute('franchises.index');
         }
 
+        return $this->render('franchises/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 
-    
-} 
+    /**
+     * Cette fonction permet de supprimer une franchise
+     * 
+     * @param Franchises $franchises
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[Route('/franchises/suppression/{id}', 'franchises.delete', methods: ['GET', 'POST'])]
+    public function delete(Franchises $franchises, EntityManagerInterface $manager): Response
+    {
+        if (!$franchises) {
+            $this->addFlash('success', 'Cette franchise n\'existe pas');
+            return $this->redirectToRoute('franchises.index');
+        }
+        $manager->remove($franchises);
+        $manager->flush();
+        $this->addFlash('success', 'La franchise a bien été supprimé');
+
+        return $this->redirectToRoute('franchises.index');
+    }
+}
